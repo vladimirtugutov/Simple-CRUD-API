@@ -2,6 +2,7 @@
   "scripts": {
     "start:dev": "ts-node-dev src/app.ts",
     "start:prod": "tsc && node dist/app.js",
+    "start:multi": "ts-node src/master.ts",
     "test": "vitest run"
   },
   "dependencies": {

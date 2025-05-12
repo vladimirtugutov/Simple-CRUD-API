@@ -35,6 +35,12 @@ npm run start:prod
 ```
 This compiles TypeScript to JavaScript and starts the server.
 
+
+### 5. Run with load balancing (Cluster API)
+```bash
+npm run start:multi
+```
+
 ## API Endpoints
 
 ### GET /api/users
@@ -137,6 +143,17 @@ npm test
 
 
 ## Requirements
-	•	Node.js v22.x.x or higher
-	•	Only allowed libraries: uuid, dotenv, dev tools (typescript, ts-node-dev, eslint, etc.)
-	•	No frameworks like Express are used
+
+	•	TypeScript implementation
+
+	•	No external frameworks (like Express)
+
+	•	In-memory DB
+
+	•	.env config
+
+	•	Dev and prod scripts
+
+	•	Cluster-based horizontal scaling
+
+	•	API testable via scripts
