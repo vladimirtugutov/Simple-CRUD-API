@@ -7,7 +7,7 @@ export const parseBody = (req: IncomingMessage): Promise<any> => {
     req.on('end', () => {
       try {
         resolve(JSON.parse(body));
-      } catch (err) {
+      } catch (_err) {
         reject(new Error('Invalid JSON'));
       }
     });

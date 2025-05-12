@@ -23,7 +23,7 @@ export const userController = {
       const user = createUser(username, age, hobbies);
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(user));
-    } catch (e) {
+    } catch (_err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Server error' }));
     }

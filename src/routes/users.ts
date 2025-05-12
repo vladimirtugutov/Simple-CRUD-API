@@ -31,7 +31,7 @@ export const usersRouter = async (req: IncomingMessage, res: ServerResponse) => 
   
       res.writeHead(404, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Route not found' }));
-    } catch (err) {
+    } catch (_err) {
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Internal Server Error' }));
     }

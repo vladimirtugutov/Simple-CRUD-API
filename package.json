@@ -3,7 +3,9 @@
     "start:dev": "ts-node-dev src/app.ts",
     "start:prod": "tsc && node dist/app.js",
     "start:multi": "ts-node src/master.ts",
-    "test": "vitest run"
+    "test": "vitest run",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix"
   },
   "dependencies": {
     "uuid": "^11.1.0"
@@ -11,7 +13,10 @@
   "devDependencies": {
     "@types/node": "^22.15.17",
     "@types/supertest": "^6.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
     "dotenv": "^16.5.0",
+    "eslint": "^9.26.0",
     "supertest": "^7.1.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.8.3",
