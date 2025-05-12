@@ -3,9 +3,10 @@
     "target": "ES2022",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node"
-  }
+  },
+  "exclude": ["dist", "node_modules", "**/*.test.ts"]
 }

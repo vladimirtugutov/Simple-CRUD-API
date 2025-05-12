@@ -128,3 +128,15 @@ curl http://localhost:3000/api/users
 
 ### Testing
 
+This project includes automated tests (see /tests folder, if implemented).
+
+You can run tests with:
+```bash
+npm test
+```
+
+
+## Requirements
+	•	Node.js v22.x.x or higher
+	•	Only allowed libraries: uuid, dotenv, dev tools (typescript, ts-node-dev, eslint, etc.)
+	•	No frameworks like Express are used
