@@ -1,5 +1,5 @@
 import { IncomingMessage, ServerResponse } from 'http';
-import { createUser } from '../models/user';
+import { users, createUser } from '../models/user';
 import { parseBody } from '../utils/parseBody';
 
 export const userController = {
@@ -28,5 +28,10 @@ export const userController = {
     }
   },
 
-  getAll() {}, getOne() {}, update() {}, remove() {},
+  async getAll(_req: IncomingMessage, res: ServerResponse) {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify(users));
+  },
+
+  getOne() {}, update() {}, remove() {},
 };
