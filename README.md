@@ -1,3 +1,6 @@
+# Important note for the reviewers
+This task was completed by me for the first time in May 2025. I used another GitHub profile (marmotT) for pushing the code to the repository, but the repository remains mine. Please don't waste your time trying to accuse me of stealing another person's code because marmotT and vladimirtugutov are the same person—me—and I can easily prove that. Thank you for your attention.
+
 # Simple CRUD API
 
 ## Description
@@ -21,7 +24,7 @@ npm install
 
 ### 2. Create .env file
 ```bash
-PORT=3000
+PORT=4000
 ```
 
 ### 3. Run in development mode
@@ -121,7 +124,7 @@ npm run start:multi
 
 Create user
 ```bash
-curl -X POST http://localhost:3000/api/users \
+curl -X POST http://localhost:4000/api/users \
   -H "Content-Type: application/json" \
   -d '{"username":"Alice","age":30,"hobbies":["reading","coding"]}'
 ```
@@ -129,7 +132,7 @@ curl -X POST http://localhost:3000/api/users \
 
 Get all users
 ```bash
-curl http://localhost:3000/api/users
+curl http://localhost:4000/api/users
 ```
 
 ### Testing
