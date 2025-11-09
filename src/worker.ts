@@ -2,7 +2,7 @@ import { createServer, IncomingMessage, ServerResponse } from 'http';
 import { User, MessageFromWorker, MessageToWorker } from './db';
 import { v4 as uuidv4 } from 'uuid';
 
-const BASE = Number(process.env.PORT || 3000);
+const BASE = Number(process.env.PORT || 4000);
 const WORKER_ID = Number(process.env.WORKER_ID || 1);
 const PORT = BASE + WORKER_ID;
 
