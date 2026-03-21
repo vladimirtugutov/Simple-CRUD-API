@@ -11,7 +11,6 @@ const PORT = BASE_PORT + WORKER_ID;
 
 const app = fastify({ logger: true });
 
-// Регистрируем роуты (IPC внутри них!)
 app.register(productsRouter, { prefix: '/api' });
 
 app.setErrorHandler((error, _req, reply) => {

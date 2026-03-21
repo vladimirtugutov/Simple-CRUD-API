@@ -7,9 +7,8 @@ export type Product = {
   inStock: boolean;
 };
 
-export let products: Product[] = [];  // БЫЛ users
+export let products: Product[] = [];
 
-// Новые типы сообщений
 export type MessageFromWorker =
   | { type: 'GET_ALL_PRODUCTS' }
   | { type: 'CREATE_PRODUCT'; payload: Product }

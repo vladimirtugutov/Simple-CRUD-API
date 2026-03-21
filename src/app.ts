@@ -6,10 +6,8 @@ dotenv.config();
 
 const app = fastify({ logger: true });
 
-// Регистрируем роуты
 app.register(productsRouter, { prefix: '/api' });
 
-// Глобальный error handler (404/500 автоматом)
 app.setErrorHandler((error, _req, reply) => {
   reply.status(500).send({ message: 'Internal Server Error' });
 });

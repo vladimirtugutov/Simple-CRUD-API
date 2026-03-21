@@ -2,7 +2,7 @@ import cluster from 'cluster';
 import os from 'os';
 import { createServer, request as httpRequest } from 'http';
 import dotenv from 'dotenv';
-import { products, MessageFromWorker, MessageToWorker } from './db';  // products!
+import { products, MessageFromWorker, MessageToWorker } from './db';
 
 dotenv.config();
 
@@ -47,7 +47,6 @@ if (cluster.isPrimary) {
     console.log(`Load Balancer running at http://localhost:${PORT}`);
   });
 
-  // ОБНОВИ switch: USER → PRODUCT
   cluster.on('message', (worker, message: MessageFromWorker) => {
     switch (message.type) {
       case 'CREATE_PRODUCT': {

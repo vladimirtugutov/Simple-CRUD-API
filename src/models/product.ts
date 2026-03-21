@@ -9,7 +9,7 @@ export type Product = {
   inStock: boolean;
 };
 
-export const products: Product[] = [];  // Глобальная база
+export const products: Product[] = [];
 
 export const createProduct = (
   name: string, 

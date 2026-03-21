@@ -1,9 +1,8 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
 import { z } from 'zod';
 import { products, createProduct } from '../models/product';
-import { validate as isUuid } from 'uuid';  // ✅ Только uuid
+import { validate as isUuid } from 'uuid';
 
-// Zod схемы
 const productSchema = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
@@ -14,14 +13,13 @@ const productSchema = z.object({
 
 type ProductRequest = FastifyRequest<{ 
   Params?: { id: string }; 
-  Body?: z.infer<typeof productSchema>;  // ✅ Тип для request.body
+  Body?: z.infer<typeof productSchema>;
 }>;
 
 export const productController = {
-  // POST /api/products ✅ request.body работает!
   async create(request: ProductRequest, reply: FastifyReply) {
     try {
-      const productData = productSchema.parse(request.body);  // ✅ Fastify JSON!
+      const productData = productSchema.parse(request.body);
 
       const product = createProduct(
         productData.name,
@@ -75,7 +73,7 @@ export const productController = {
     }
 
     try {
-      const productData = productSchema.parse(request.body);  // ✅ request.body!
+      const productData = productSchema.parse(request.body);
       
       products[index] = { 
         id, 
