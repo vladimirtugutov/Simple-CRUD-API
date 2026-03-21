@@ -1,15 +1,30 @@
-import { createServer } from 'http';
-import { usersRouter } from './routes/users';
+import fastify from 'fastify';
 import dotenv from 'dotenv';
+import { productsRouter } from './routes/products';
 
 dotenv.config();
 
-const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
+const app = fastify({ logger: true });
 
-const server = createServer((req, res) => {
-  usersRouter(req, res);
+// Регистрируем роуты
+app.register(productsRouter, { prefix: '/api' });
+
+// Глобальный error handler (404/500 автоматом)
+app.setErrorHandler((error, _req, reply) => {
+  reply.status(500).send({ message: 'Internal Server Error' });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
-});
+const start = async () => {
+  try {
+    await app.listen({ 
+      port: Number(process.env.PORT || 4000),
+      host: '0.0.0.0'
+    });
+    console.log(`Server running at http://localhost:${process.env.PORT || 4000}`);
+  } catch (err) {
+    app.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();

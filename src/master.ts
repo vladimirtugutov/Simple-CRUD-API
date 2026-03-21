@@ -2,7 +2,7 @@ import cluster from 'cluster';
 import os from 'os';
 import { createServer, request as httpRequest } from 'http';
 import dotenv from 'dotenv';
-import { users, MessageFromWorker, MessageToWorker } from './db';
+import { products, MessageFromWorker, MessageToWorker } from './db';  // products!
 
 dotenv.config();
 
@@ -47,47 +47,44 @@ if (cluster.isPrimary) {
     console.log(`Load Balancer running at http://localhost:${PORT}`);
   });
 
+  // ОБНОВИ switch: USER → PRODUCT
   cluster.on('message', (worker, message: MessageFromWorker) => {
     switch (message.type) {
-      case 'CREATE_USER': {
-        users.push(message.payload);
-        worker.send({ type: 'USER_CREATED', payload: message.payload } satisfies MessageToWorker);
+      case 'CREATE_PRODUCT': {
+        products.push(message.payload);
+        worker.send({ type: 'PRODUCT_CREATED', payload: message.payload } satisfies MessageToWorker);
         break;
       }
-
-      case 'GET_ALL_USERS': {
-        worker.send({ type: 'ALL_USERS', payload: users } satisfies MessageToWorker);
+      case 'GET_ALL_PRODUCTS': {
+        worker.send({ type: 'ALL_PRODUCTS', payload: products } satisfies MessageToWorker);
         break;
       }
-
-      case 'GET_USER_BY_ID': {
-        const user = users.find(u => u.id === message.payload);
-        if (user) {
-          worker.send({ type: 'USER_FOUND', payload: user });
+      case 'GET_PRODUCT_BY_ID': {
+        const product = products.find(p => p.id === message.payload);
+        if (product) {
+          worker.send({ type: 'PRODUCT_FOUND', payload: product });
         } else {
-          worker.send({ type: 'USER_NOT_FOUND' });
+          worker.send({ type: 'PRODUCT_NOT_FOUND' });
         }
         break;
       }
-
-      case 'UPDATE_USER': {
-        const idx = users.findIndex(u => u.id === message.payload.id);
+      case 'UPDATE_PRODUCT': {
+        const idx = products.findIndex(p => p.id === message.payload.id);
         if (idx !== -1) {
-          users[idx] = message.payload;
-          worker.send({ type: 'USER_UPDATED', payload: message.payload });
+          products[idx] = message.payload;
+          worker.send({ type: 'PRODUCT_UPDATED', payload: message.payload });
         } else {
-          worker.send({ type: 'USER_NOT_FOUND' });
+          worker.send({ type: 'PRODUCT_NOT_FOUND' });
         }
         break;
       }
-
-      case 'DELETE_USER': {
-        const idx = users.findIndex(u => u.id === message.payload);
+      case 'DELETE_PRODUCT': {
+        const idx = products.findIndex(p => p.id === message.payload);
         if (idx !== -1) {
-          users.splice(idx, 1);
-          worker.send({ type: 'USER_DELETED' });
+          products.splice(idx, 1);
+          worker.send({ type: 'PRODUCT_DELETED' });
         } else {
-          worker.send({ type: 'USER_NOT_FOUND' });
+          worker.send({ type: 'PRODUCT_NOT_FOUND' });
         }
         break;
       }

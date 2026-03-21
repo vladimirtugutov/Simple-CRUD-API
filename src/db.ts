@@ -1,24 +1,27 @@
-export type User = {
-    id: string;
-    username: string;
-    age: number;
-    hobbies: string[];
-  };
-  
-  export let users: User[] = [];
-  
-  export type MessageFromWorker =
-    | { type: 'GET_ALL_USERS' }
-    | { type: 'CREATE_USER'; payload: User }
-    | { type: 'UPDATE_USER'; payload: User }
-    | { type: 'DELETE_USER'; payload: string }
-    | { type: 'GET_USER_BY_ID'; payload: string };
-  
-  export type MessageToWorker =
-    | { type: 'ALL_USERS'; payload: User[] }
-    | { type: 'USER_CREATED'; payload: User }
-    | { type: 'USER_UPDATED'; payload: User }
-    | { type: 'USER_DELETED' }
-    | { type: 'USER_FOUND'; payload: User }
-    | { type: 'USER_NOT_FOUND' }
-    | { type: 'INVALID_USER_ID' };
+export type Product = {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  inStock: boolean;
+};
+
+export let products: Product[] = [];  // БЫЛ users
+
+// Новые типы сообщений
+export type MessageFromWorker =
+  | { type: 'GET_ALL_PRODUCTS' }
+  | { type: 'CREATE_PRODUCT'; payload: Product }
+  | { type: 'UPDATE_PRODUCT'; payload: Product }
+  | { type: 'DELETE_PRODUCT'; payload: string }
+  | { type: 'GET_PRODUCT_BY_ID'; payload: string };
+
+export type MessageToWorker =
+  | { type: 'ALL_PRODUCTS'; payload: Product[] }
+  | { type: 'PRODUCT_CREATED'; payload: Product }
+  | { type: 'PRODUCT_UPDATED'; payload: Product }
+  | { type: 'PRODUCT_DELETED' }
+  | { type: 'PRODUCT_FOUND'; payload: Product }
+  | { type: 'PRODUCT_NOT_FOUND' }
+  | { type: 'INVALID_PRODUCT_ID' };
