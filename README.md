@@ -46,24 +46,24 @@ npm run start:multi
 
 ## API Endpoints
 
-### GET /api/users
+### GET /api/products 
 
-	•	Returns a list of all users.
+	•	Returns a list of all products .
 
-	•	Response: 200 OK + array of users.
+	•	Response: 200 OK + array of products .
 
 
-### GET /api/users/:id
+### GET /api/products /:id
 
-	•	Returns a user by id.
+	•	Returns a product by id.
 
 	•	Responses:
 
-	    •	200 OK — if user is found
+	    •	200 OK — if product is found
 
 	    •	400 Bad Request — if the ID is not a valid UUID
 
-	    •	404 Not Found — if no user with the given ID exists
+	    •	404 Not Found — if no product with the given ID exists
 
 
 ### POST /api/users
@@ -72,36 +72,38 @@ npm run start:multi
 
 	•	Request body:    
         {
-        "username": "Alice",
-        "age": 30,
-        "hobbies": ["reading", "chess"]
+        "name": "iPhone 15",
+        "description": "Latest smartphone",
+        "price": 999,
+        "category":"electronics",
+        "inStock":true
         }
     
     •	Responses:
 
-	    •	201 Created — returns the created user
+	    •	201 Created — returns the created product
 
 	    •	400 Bad Request — if the body is invalid
 
 
-### PUT /api/users/:id
+### PUT /api/products/:id
 
-	•	Updates an existing user.
+	•	Updates an existing product.
 
 	•	Request body must include all required fields.
 
 	•	Responses:
 
-        •	200 OK — updated user
+        •	200 OK — updated product
 
         •	400 Bad Request — invalid ID or body
 
-        •	404 Not Found — user not found
+        •	404 Not Found — product not found
 
 
-### DELETE /api/users/:id
+### DELETE /api/products/:id
 
-	•	Deletes the user with the specified ID.
+	•	Deletes the product with the specified ID.
 
 	•	Responses:
 
@@ -113,37 +115,11 @@ npm run start:multi
 
 ### Error Handling
 
-   •	Code 400 - Invalid user ID or body
+   •	Code 400 - Invalid product ID or body
 
-   •	Code 404 - User not found / Route not found
+   •	Code 404 - Product not found / Route not found
 
    •	Code 500 - Internal Server Error
-
-
-### Example Usage (via curl)
-
-Create user
-```bash
-curl -X POST http://localhost:4000/api/users \
-  -H "Content-Type: application/json" \
-  -d '{"username":"Alice","age":30,"hobbies":["reading","coding"]}'
-```
-
-
-Get all users
-```bash
-curl http://localhost:4000/api/users
-```
-
-### Testing
-
-This project includes automated tests (see /tests folder, if implemented).
-
-You can run tests with:
-```bash
-npm test
-```
-
 
 ## Requirements
 
@@ -162,7 +138,7 @@ npm test
 	•	API testable via scripts
 
 
-## CURL commands
+## Example Usage (via curl)
 ### 1. GET all products (an empty array in the very beginning)
 curl http://localhost:4000/api/products
 
@@ -193,3 +169,12 @@ curl -X PUT http://localhost:4000/api/products/{UUID} \
 
 ### 6. Delete  
 curl -X DELETE http://localhost:4000/api/products/{UUID}
+
+### Testing
+
+This project includes automated tests (see /tests folder, if implemented).
+
+You can run tests with:
+```bash
+npm run test
+```
