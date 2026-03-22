@@ -19,8 +19,8 @@ export type MessageFromWorker =
 export type MessageToWorker =
   | { type: 'ALL_PRODUCTS'; payload: Product[] }
   | { type: 'PRODUCT_CREATED'; payload: Product }
+  | { type: 'PRODUCT_FOUND'; payload: Product }
   | { type: 'PRODUCT_UPDATED'; payload: Product }
   | { type: 'PRODUCT_DELETED' }
-  | { type: 'PRODUCT_FOUND'; payload: Product }
   | { type: 'PRODUCT_NOT_FOUND' }
   | { type: 'INVALID_PRODUCT_ID' };

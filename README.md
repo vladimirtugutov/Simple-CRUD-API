@@ -160,3 +160,36 @@ npm test
 	•	Cluster-based horizontal scaling
 
 	•	API testable via scripts
+
+
+## CURL commands
+### 1. GET all products (an empty array in the very beginning)
+curl http://localhost:4000/api/products
+
+### 2. Create product
+curl -X POST http://localhost:4000/api/products \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "iPhone 15",
+    "description": "Latest smartphone",
+    "price": 999,
+    "category": "electronics",
+    "inStock": true
+  }'
+
+### 3. Get product by ID
+curl http://localhost:4000/api/products/{UUID}
+
+### 4. Check invalid price <= 0
+curl -X POST http://localhost:4000/api/products \
+  -H "Content-Type: application/json" \
+  -d '{"name":"test","description":"test","price":0,"category":"test","inStock":true}'
+
+
+### 5. Update
+curl -X PUT http://localhost:4000/api/products/{UUID} \
+  -H "Content-Type: application/json" \
+  -d '{"name":"iPhone Updated","description":"Updated","price":899,"category":"electronics","inStock":false}'
+
+### 6. Delete  
+curl -X DELETE http://localhost:4000/api/products/{UUID}
