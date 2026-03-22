@@ -12,6 +12,8 @@ app.setErrorHandler((error, _req, reply) => {
   reply.status(500).send({ message: 'Internal Server Error' });
 });
 
+export { app };
+
 const start = async () => {
   try {
     await app.listen({ 
@@ -25,4 +27,6 @@ const start = async () => {
   }
 };
 
-start();
+if (process.env.NODE_ENV !== 'test') {
+  start();
+}
