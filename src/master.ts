@@ -6,7 +6,7 @@ import { products, MessageFromWorker, MessageToWorker } from './db';
 
 dotenv.config();
 
-const PORT = Number(process.env.PORT || 4000);
+const PORT = process.env.PORT ? Number(process.env.PORT) : 4000;
 const numCPUs = os.availableParallelism ? os.availableParallelism() - 1 : os.cpus().length - 1;
 let current = 0;
 
